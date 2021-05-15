@@ -41,7 +41,7 @@
         <ion-fab-button>
           <ion-icon :icon="add"></ion-icon>
         </ion-fab-button>
-      </ion-fab>
+      </ion-fab> 
     </ion-content>
   </ion-page>
 </template>
