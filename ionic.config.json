@@ -1,0 +1,7 @@
+{
+  "name": "ToDoApp-vue",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
