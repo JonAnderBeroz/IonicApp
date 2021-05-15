@@ -9,6 +9,14 @@ const routes = [
   {
     path: '/notes',
     component: notePages
+  },
+  {
+    path: '/notes/:id',
+    component: () => import('../pages/noteDetail.vue')
+  },
+  {
+    path: '/notes/add',
+    component: ()=> import('../pages/addNote.vue')
   }
 ]
 
