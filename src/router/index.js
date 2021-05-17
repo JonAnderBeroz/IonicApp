@@ -1,10 +1,15 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 
 import notePages from '../pages/notePages.vue'
+import main from '../pages/main.vue'
 const routes = [
   {
     path: '/',
     redirect: '/notes'
+  },
+  {
+    path: '/main',
+    component: main
   },
   {
     path: '/notes',
@@ -17,6 +22,16 @@ const routes = [
   {
     path: '/notes/add',
     component: ()=> import('../pages/addNote.vue')
+  },
+  {
+    path: '/login',
+    name: 'userLogin',
+    component: ()=> import('../pages/login.vue')
+  },
+  {
+    path: '/register',
+    name: 'userRegistration',
+    component: ()=>import('../pages/register.vue')
   }
 ]
 

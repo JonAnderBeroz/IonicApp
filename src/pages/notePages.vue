@@ -1,31 +1,18 @@
 <template>
   <base-layout page-title="My Notes">
+    <template v-slot:username>
+      <ion-label slot="end">{{ currentUser.name }}</ion-label>
+    </template>
+    <template v-slot:actions-end>
+      <ion-button @click="logoutUser">
+        <ion-icon :icon="logOut"></ion-icon
+      ></ion-button>
+    </template>
     <ion-list>
-      <ion-item>
-        <ion-label router-link="/notes/1"
-          ><h1>Title</h1>
-          <p>Description</p></ion-label
-        >
-        <ion-checkbox slot="end" > </ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label
-          ><h1>Title</h1>
-          <p>Description</p></ion-label
-        >
-        <ion-checkbox slot="end"> </ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label
-          ><h1>Title</h1>
-          <p>Description</p></ion-label
-        >
-        <ion-checkbox slot="end"> </ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label
-          ><h1>Title</h1>
-          <p>Description</p></ion-label
+      <ion-item v-for="note in notes" :key="note.id">
+        <ion-label router-link="/notes/${note.id}"
+          ><h1>{{ note.title }}</h1>
+          <p>{{ note.description }}</p></ion-label
         >
         <ion-checkbox slot="end"> </ion-checkbox>
       </ion-item>
@@ -45,9 +32,10 @@ import {
   IonIcon,
   IonFab,
   IonFabButton,
-  IonLabel
+  IonLabel,
+  IonButton,
 } from "@ionic/vue";
-import { add, trash } from "ionicons/icons";
+import { add, trash, logOut } from "ionicons/icons";
 export default {
   components: {
     IonList,
@@ -56,10 +44,28 @@ export default {
     IonIcon,
     IonFab,
     IonFabButton,
-    IonLabel
+    IonLabel,
+    IonButton,
   },
   data() {
-    return { add, trash };
+    return { add, trash, logOut };
+  },
+  computed: {
+    notes() {
+      return this.$store.getters.notes;
+    },
+    currentUser() {
+      return this.$store.getters.currentUser;
+    },
+  },
+  methods: {
+    logoutUser() {
+      this.$store.dispatch("logoutUser");
+      this.$router.replace("/login");
+    },
+  },
+  mounted() {
+    this.$store.dispatch("loadUser");
   },
 };
 </script>
