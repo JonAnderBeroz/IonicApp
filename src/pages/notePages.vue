@@ -9,12 +9,11 @@
       ></ion-button>
     </template>
     <ion-list>
-      <ion-item v-for="note in notes" :key="note.id">
-        <ion-label router-link="/notes/${note.id}"
+      <ion-item v-for="note in notes" :key="note.id" :router-link="`/notes/${note.id}`">
+        <ion-label 
           ><h1>{{ note.title }}</h1>
           <p>{{ note.description }}</p></ion-label
         >
-        <ion-checkbox slot="end"> </ion-checkbox>
       </ion-item>
     </ion-list>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -28,7 +27,6 @@
 import {
   IonList,
   IonItem,
-  IonCheckbox,
   IonIcon,
   IonFab,
   IonFabButton,
@@ -40,7 +38,6 @@ export default {
   components: {
     IonList,
     IonItem,
-    IonCheckbox,
     IonIcon,
     IonFab,
     IonFabButton,
@@ -48,7 +45,7 @@ export default {
     IonButton,
   },
   data() {
-    return { add, trash, logOut };
+    return { add, trash, logOut, };
   },
   computed: {
     notes() {

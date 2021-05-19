@@ -5,28 +5,34 @@ const store = createStore({
     return {
       notes: [
         {
-          id: 1,
+          id: '1',
           title: "Important note",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tincidunt augue interdum velit euismod. Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis.",
           dateStart: "",
           dateEnd: "",
+          time: "",
+          user: "Jon Ander"
         },
         {
-          id: 2,
+          id: '2',
           title: "Shopping List",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tincidunt augue interdum velit euismod. Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis.",
           dateStart: "",
           dateEnd: "",
+          time: "",
+          user: "Mariane"
         },
         {
-          id: 3,
+          id: '3',
           title: "Meeting with coworkers",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tincidunt augue interdum velit euismod. Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis.",
+            "patata",
           dateStart: "2021-06-01",
           dateEnd: "2021-06-01",
+          time: "",
+          user: "Jon Ander"
         },
       ],
       users: [
@@ -64,6 +70,19 @@ const store = createStore({
       };
       state.users.unshift(newUser);
     },
+    ADD_NOTE(state, note){
+        const newNote={
+          id: JSON.stringify(state.notes.size + 1),
+          title: note.title,
+          description: note.description,
+          dateStart: note.eventStart,
+          dateEnd: note.eventEnd,
+          time: note.eventTime,
+          user: state.currentUser.name
+        };
+        console.log(newNote);
+        state.notes.unshift(newNote);
+    }
   },
   actions: {
     logoutUser({ commit }) {
@@ -99,10 +118,15 @@ const store = createStore({
       let user = JSON.parse(window.localStorage.currentUser);
       commit("SET_CURRENT_USER", user);
     },
+    addNote({commit}, noteData){
+        commit("ADD_NOTE", noteData);
+    }
   },
   getters: {
     notes(state) {
-      return state.notes;
+      console.log(state.currentUser.name)
+      console.log(state.notes.filter(note => note.user === state.currentUser.name))
+      return state.notes.filter(note => note.user === state.currentUser.name);
     },
     users(state) {
       return state.users;
@@ -110,6 +134,11 @@ const store = createStore({
     currentUser(state) {
       return state.currentUser;
     },
+    note(state){
+       return (noteID) => {
+        return state.notes.find( (note) => note.id === noteID)
+      }
+    }
   },
 });
 
