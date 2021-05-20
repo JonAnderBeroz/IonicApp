@@ -72,7 +72,7 @@ const store = createStore({
     },
     ADD_NOTE(state, note){
         const newNote={
-          id: JSON.stringify(state.notes.size + 1),
+          id: JSON.stringify(state.notes.length + 1),
           title: note.title,
           description: note.description,
           dateStart: note.eventStart,
@@ -80,7 +80,6 @@ const store = createStore({
           time: note.eventTime,
           user: state.currentUser.name
         };
-        console.log(newNote);
         state.notes.unshift(newNote);
     }
   },
@@ -124,8 +123,6 @@ const store = createStore({
   },
   getters: {
     notes(state) {
-      console.log(state.currentUser.name)
-      console.log(state.notes.filter(note => note.user === state.currentUser.name))
       return state.notes.filter(note => note.user === state.currentUser.name);
     },
     users(state) {

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { IonButton} from "@ionic/vue";
+import { IonButton, } from "@ionic/vue";
 export default {
   components: {
     IonButton,

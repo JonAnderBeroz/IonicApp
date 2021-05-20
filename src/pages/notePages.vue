@@ -58,7 +58,7 @@ export default {
   methods: {
     logoutUser() {
       this.$store.dispatch("logoutUser");
-      this.$router.replace("/login");
+      this.$router.replace("/main");
     },
   },
   mounted() {

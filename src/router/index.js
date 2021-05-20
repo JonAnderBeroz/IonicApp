@@ -5,7 +5,7 @@ import main from "../pages/main.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/notes",
+    redirect: "/main",
   },
   {
     path: "/main",

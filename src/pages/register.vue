@@ -1,5 +1,5 @@
 <template>
-  <base-layout page-title="Register User">
+  <base-layout page-title="Register User" previousPage="/main">
     <div class="ion-padding">
       <ion-list>
         <ion-item>

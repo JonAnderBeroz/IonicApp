@@ -1,5 +1,5 @@
 <template>
-  <base-layout page-title="Note detail" previousPage="/notes">
+  <base-layout page-title="Add Note" previousPage="/notes">
     <h2>Detail page</h2>
     <ion-item>
       <ion-label>Title of the note</ion-label>
